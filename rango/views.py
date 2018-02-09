@@ -182,7 +182,7 @@ def user_login(request):
         else:
             # Incorrect details were provided
             print("Invalid login details: {0}, {1}".format(username,password))
-            return HttpResponse("Invalid  login details supplied.")
+            return HttpResponse("Invalid login details supplied.")
     else:
             # No data submitted to form - reload page
             return render(request,'rango/login.html', {})
