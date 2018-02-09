@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
 
-  <head>
-    <title>About</title>
-  </head>
+  {% extends 'rango/base.html' %}
+  {% load staticfiles %}
 
-  <body>
-    <h1>Rango says....</h1>
-    <div>
+  {% block title_block %}
+      {{ category.name }}
+  {% endblock %}
+
+  {% block body_block %}
+      <div>
       This tutorial has been put together by
       <strong>{{ user }}</strong> <br>
-    </div>
-    <div>
-      <a href="/">Index Page</a> <br>
     </div>
 
     <div>
@@ -24,4 +20,5 @@
       <img src="{{ MEDIA_URL }}cat.png" width='800px'
         alt="Picture Of A Cat" />
     </div>
-  </body>
+
+  {% endblock %}
