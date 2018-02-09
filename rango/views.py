@@ -33,7 +33,12 @@ def about(request):
         print("TEST COOKIE WORKED!")
         request.session.delete_test_cookie()
     context_dict = { 'user' : "Martin Ganly"}
-    return render(request, 'rango/about.html', context=context_dict)
+
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+
+    response = render(request, 'rango/about.html', context_dict)
+    return response
 
 def polls(request):
     context_dict = { }
@@ -217,7 +222,7 @@ def visitor_cookie_handler(request):
 
     if(datetime.now() - last_visit_time).days > 0:
         visits = visits + 1
-        response.set_Cookie('last_visit', str(datetime.now()))
+        response.set_cookie('last_visit', str(datetime.now()))
     else:
         visits = 1
         request.session['last_visit'] = last_visit_cookie
